@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { addEmployee, employeeData } from "../slices/displaySlice";
+import { addEmpPage, employeeData } from "../slices/displaySlice";
 
 const Navbar = () => {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const Navbar = () => {
                                 <a className="nav-link active" onClick={() => dispatch(employeeData("home"))} aria-current="page" href="#">Home</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" onClick={() => dispatch(addEmployee("addEmployee"))} href="#">Add Employee</a>
+                                <a className="nav-link" onClick={() => dispatch(addEmpPage("addEmployee"))} href="#">Add Employee</a>
                             </li>
                         </ul>
                         <form className="d-flex" role="search">

@@ -7,12 +7,12 @@ const display = createSlice({
         employeeData: (state, action) => {
             return action.payload;
         },
-        addEmployee: (state, action) => {
+        addEmpPage: (state, action) => {
             return action.payload;
         },
     },
 })
 
-export const { employeeData, addEmployee } = display.actions;
+export const { employeeData, addEmpPage } = display.actions;
 
 export default display.reducer;
