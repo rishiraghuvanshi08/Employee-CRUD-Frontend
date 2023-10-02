@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import EmployeeData from "./EmployeeData";
 import AddEmployee from "./AddEmployee";
 
-const Display = () => {
-    const toShow = useSelector((state) => state.showDisplay);
+const EmployeeDisplay = () => {
+    const toShow = useSelector((state) => state.showEmployeeDisplay);
 
     return(
         <>
@@ -15,4 +15,4 @@ const Display = () => {
         </>
     )
 }
-export default Display;
+export default EmployeeDisplay;

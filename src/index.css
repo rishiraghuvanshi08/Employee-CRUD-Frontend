@@ -90,3 +90,12 @@ th {
   color: red;
   margin-top: 10px;
 }
+
+#errorDiv {
+  text-align: center; /* Center-align the text horizontally */
+  padding: 20px; /* Add some padding for spacing */
+  background-color: #f44336; /* Set a background color for the error message */
+  color: #fff; /* Set text color to white */
+  font-size: 24px; /* Adjust the font size */
+  font-weight: bold; /* Make the text bold */
+}

@@ -8,7 +8,16 @@ const EmployeeData = () => {
 
     useEffect(() => {
         dispatch(getAllData());
-    }, [dispatch]);
+    }, [employeesData]);
+
+    if (!employeesData.employees || employeesData.employees.length === 0) {
+        // Render a loading indicator or error message
+        return (
+            <div id="displayDiv">
+                <h1>Loading...</h1>
+            </div>
+        );
+    }
 
     return (
         <>

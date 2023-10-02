@@ -1,8 +1,8 @@
-import EmployeeDisplay from "./EmployeeDisplay";
-import EmployeeNavbar from "./EmployeeNavbar";
+import CompanyNavbar from "./CompanyNavbar";
 import { NavLink } from 'react-router-dom';
+import CompanyDisplay from "./CompanyDisplay"
 
-const Employee = () => {
+const Company = () => {
     return (
         <>
             <div classNameName="text-center">
@@ -18,13 +18,13 @@ const Employee = () => {
                 </nav>
             </div>
             <div>
-                <EmployeeNavbar />
+                <CompanyNavbar />
             </div>
             <div>
-                <EmployeeDisplay />
+                <CompanyDisplay />
             </div>
 
         </>
     )
 }
-export default Employee;
+export default Company;

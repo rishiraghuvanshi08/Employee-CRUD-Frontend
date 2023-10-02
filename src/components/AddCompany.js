@@ -1,36 +1,33 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addEmployee } from "../slices/addEmployee";
-import { employeeData } from "../slices/displaySlice";
 
-const AddEmployee = () => {
-  const [employee, setEmployee] = useState({
-    name: "",
-    dateOfJoining: "",
-    companyId: "",
-  });
-  const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.employee);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Dispatch the addEmployee action with the employee data
-    dispatch(
-      addEmployee({
-        companyId: employee.companyId,
-        employeeData: {
-          name: employee.name,
-          dateOfJoining: employee.dateOfJoining,
-        },
-      })
-    );
-    dispatch(employeeData("home"));
-  };
+const AddCompany = () => {
+//   const [employee, setEmployee] = useState({
+//     name: "",
+//     dateOfJoining: "",
+//     companyId: "",
+//   });
+//   const dispatch = useDispatch();
+//   const { loading, error } = useSelector((state) => state.employee);
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     // Dispatch the addEmployee action with the employee data
+//     dispatch(
+//       addEmployee({
+//         companyId: employee.companyId,
+//         employeeData: {
+//           name: employee.name,
+//           dateOfJoining: employee.dateOfJoining,
+//         },
+//       })
+//     );
+//     dispatch(employeeData("home"));
+//   };
 
   return (
     <div id="addEmp">
-        <h2>Fill the form to add a new Employee</h2>
-      <form id="addEmpForm" onSubmit={handleSubmit}>
+        <h2>Fill the form to add a new Company</h2>
+      {/* <form id="addEmpForm" onSubmit={handleSubmit}>
         <div className="mb-3">
           <input
             type="text"
@@ -42,7 +39,7 @@ const AddEmployee = () => {
         </div>
         <div className="mb-3">
           <input
-            type="date"
+            type="text"
             className="form-control"
             placeholder="yyyy-MM-dd"
             value={employee.dateOfJoining}
@@ -52,7 +49,6 @@ const AddEmployee = () => {
                 dateOfJoining: e.target.value,
               })
             }
-            pattern="\d{4}-\d{2}-\d{2}"
           />
         </div>
         <div className="mb-3">
@@ -75,9 +71,9 @@ const AddEmployee = () => {
           </button>
         </div>
       </form>
-      {error && <div className="error">{error}</div>}
+      {error && <div className="error">{error}</div>} */}
     </div>
   );
 };
 
-export default AddEmployee;
+export default AddCompany;
