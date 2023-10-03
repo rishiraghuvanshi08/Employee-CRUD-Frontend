@@ -4,6 +4,7 @@ import display from '../slices/displaySlice';
 import employeeReducer from '../slices/employeeSlice'
 import companyDisplay from '../slices/companyDisplay';
 import companySlice from '../slices/companySlice';
+import deleteEmployeeSlice from '../slices/deleteEmployee';
 
 const store = configureStore({
     reducer: {
@@ -12,7 +13,7 @@ const store = configureStore({
         employee: employeeReducer,
         showEmployeeDisplay: display,
         showCompanyDisplay : companyDisplay,
-        
+        deleteEmployee: deleteEmployeeSlice,
     },
 })
 export default store;

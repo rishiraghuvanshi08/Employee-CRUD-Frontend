@@ -13,18 +13,18 @@ export const companySlice = createSlice({
         loading: false,
         error: null,
     },
-
+    // reducers:
     extraReducers: {
         [getCompanies.pending]: (state) => {
             state.loading = true;
         },
         [getCompanies.fulfilled]: (state, action) => {
             state.loading = false;
-            state.employees = action.payload;
+            state.companies = action.payload;
         },
         [getCompanies.rejected]: (state, action) => {
             state.loading = false;
-            state.error = action.payload;
+            state.error = true;
         },
     }
 })

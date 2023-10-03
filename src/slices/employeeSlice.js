@@ -24,7 +24,7 @@ export const employee = createSlice({
         },
         [getAllData.rejected]: (state, action) => {
             state.loading = false;
-            state.error = action.payload;
+            state.error = true;
         },
     }
 })

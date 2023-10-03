@@ -4,18 +4,25 @@ import { useEffect } from "react";
 
 
 const CompanyData = () => {
-    const companiesData = useSelector((state) => state.companyData)
+    const { companies, loading, error } = useSelector((state) => state.companyData)
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getCompanies());
-    }, [companiesData]);
+    }, []);
 
-    if (!companiesData.employees || companiesData.employees.length === 0) {
+    if (loading) {
         // Render a loading indicator or error message
         return (
             <div id="displayDiv">
                 <h1>Loading...</h1>
+            </div>
+        );
+    }
+    if(error){
+        return (
+            <div id="displayDiv">
+                <h1>Something went wrong...</h1>
             </div>
         );
     }
@@ -31,7 +38,7 @@ const CompanyData = () => {
                         <th scope="col">name</th>
                         <th scope="col">Employee List</th>
                     </tr>
-                    {companiesData.employees.map((company) => (
+                    {companies.map((company) => (
                         <tr key={company.id}>
                             <td>{company.id}</td>
                             <td>{company.name}</td>

@@ -16,7 +16,6 @@ export const addEmployee = createAsyncThunk(
         `http://localhost:8080/company/addEmployee/${companyId}`, // Include companyId in the URL
         employeeData
       );
-      console.log(employeeData);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

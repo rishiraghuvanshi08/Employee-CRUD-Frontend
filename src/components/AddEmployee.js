@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addEmployee } from "../slices/addEmployee";
 import { employeeData } from "../slices/displaySlice";
+import { getAllData } from "../slices/employeeSlice";
 
 const AddEmployee = () => {
   const [employee, setEmployee] = useState({

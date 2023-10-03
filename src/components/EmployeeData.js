@@ -1,20 +1,28 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllData } from "../slices/employeeSlice";
+import { deleteEmployee } from "../slices/deleteEmployee";
 
 const EmployeeData = () => {
-    const employeesData = useSelector((state) => state.data)
+    const { employees, loading, error } = useSelector((state) => state.data)
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch(getAllData());
-    }, [employeesData]);
+    }, []);
 
-    if (!employeesData.employees || employeesData.employees.length === 0) {
+    if (loading) {
         // Render a loading indicator or error message
         return (
             <div id="displayDiv">
                 <h1>Loading...</h1>
+            </div>
+        );
+    }
+    if(error){
+        return (
+            <div id="displayDiv">
+                <h1>Something went wrong...</h1>
             </div>
         );
     }
@@ -29,12 +37,14 @@ const EmployeeData = () => {
                         <th scope="col">id</th>
                         <th scope="col">name</th>
                         <th scope="col">date of joining</th>
+                        <th scope="col">Operations</th>
                     </tr>
-                    {employeesData.employees.map((ele) => (
+                    {employees.map((ele) => (
                         <tr key={ele.id}>
                             <td>{ele.id}</td>
                             <td>{ele.name}</td>
                             <td>{ele.dateOfJoining}</td>
+                            <td><button onClick={() => dispatch(deleteEmployee(ele.id))}>Delete</button></td>
                         </tr>
                     ))}
                     <td>
