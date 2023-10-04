@@ -1,19 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit';
-import employee from '../slices/employeeSlice';
 import display from '../slices/displaySlice';
-import employeeReducer from '../slices/employeeSlice'
 import companyDisplay from '../slices/companyDisplay';
-import companySlice from '../slices/companySlice';
-import deleteEmployeeSlice from '../slices/deleteEmployee';
+import companyOperations from '../slices/companySlice';
+import employeeOperationSlice from '../slices/employeeOperation';
 
 const store = configureStore({
     reducer: {
-        data: employee,
-        companyData: companySlice,
-        employee: employeeReducer,
+        companyData: companyOperations,
         showEmployeeDisplay: display,
         showCompanyDisplay : companyDisplay,
-        deleteEmployee: deleteEmployeeSlice,
+        getEmployees: employeeOperationSlice,
     },
 })
 export default store;

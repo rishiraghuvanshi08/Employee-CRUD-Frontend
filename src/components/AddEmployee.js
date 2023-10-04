@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addEmployee } from "../slices/addEmployee";
 import { employeeData } from "../slices/displaySlice";
-import { getAllData } from "../slices/employeeSlice";
+import { addNewEmployee } from "../slices/employeeOperation";
 
 const AddEmployee = () => {
   const [employee, setEmployee] = useState({
@@ -11,13 +10,11 @@ const AddEmployee = () => {
     companyId: "",
   });
   const dispatch = useDispatch();
-  const { loading, error } = useSelector((state) => state.employee);
 
   const handleSubmit = (e) => {
-    e.preventDefault();
-    // Dispatch the addEmployee action with the employee data
+    console.log("Bye Bye..")
     dispatch(
-      addEmployee({
+      addNewEmployee({
         companyId: employee.companyId,
         employeeData: {
           name: employee.name,
@@ -25,12 +22,13 @@ const AddEmployee = () => {
         },
       })
     );
+
     dispatch(employeeData("home"));
   };
 
   return (
     <div id="addEmp">
-        <h2>Fill the form to add a new Employee</h2>
+      <h2>Fill the form to add a new Employee</h2>
       <form id="addEmpForm" onSubmit={handleSubmit}>
         <div className="mb-3">
           <input
@@ -76,7 +74,6 @@ const AddEmployee = () => {
           </button>
         </div>
       </form>
-      {error && <div className="error">{error}</div>}
     </div>
   );
 };
