@@ -34,11 +34,11 @@ h1 {
   margin-top: 20px;
 }
 
-th,
-td {
+#empDataTable th,
+#empDataTable td {
   border: 1px solid #ddd; /* Add borders to table cells */
   padding: 8px;
-  text-align: left;
+  text-align: center;
 }
 
 tr:nth-child(even) {
@@ -98,4 +98,78 @@ th {
   color: #fff; /* Set text color to white */
   font-size: 24px; /* Adjust the font size */
   font-weight: bold; /* Make the text bold */
+}
+
+div.modal-content{
+  width: 800px;
+}
+/* Increase the width of the modal dialog */
+div.modal-dialog {
+  display: flex;
+  justify-content: center;
+  width: 95%;
+}
+
+/* Center the modal horizontally */
+.modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style the table */
+table.table {
+  width: 100%;
+}
+
+/* Center-align table headers and data */
+table.table th,
+table.table td {
+  text-align: center;
+}
+
+/* Style modal footer buttons */
+.modal-footer {
+  justify-content: center;
+}
+
+#addCss {
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#heading {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  margin: 20px;
+}
+
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
 }

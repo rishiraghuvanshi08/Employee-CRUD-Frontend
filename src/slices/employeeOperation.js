@@ -90,17 +90,11 @@ export const employeeOperation = createSlice({
         },
         updateEmployeeFulfiled: (state, action) => {
             state.loading = false;
-            // let tempList = [...state.employees];
-            // console.log(tempList, "Radhe")
-            // let updatedList = tempList.employees.filter((e) => e.id !== action.payload.id);
-
-            // updatedList.push(action.payload);
-            // state.employees = updatedList;
 
             let tempEmps=[...state.employees];
             let remove= tempEmps.filter((e)=>e.id!==action.payload.id);
-             remove.push(action.payload);
-             state.employees=remove;
+            remove.push(action.payload);
+            state.employees=remove;
         }
     }
 });

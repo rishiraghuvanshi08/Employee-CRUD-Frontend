@@ -1,28 +1,32 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { employeeDeletion, employeeUpdation, getEmp } from "../slices/employeeOperation";
-import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const EmployeeData = () => {
     const [updateEmployee, setUpdateEmployee] = useState({});
+    let sortedEmployees = [];
 
     const { employees, loading, error } = useSelector((state) => state.getEmployees)
     const dispatch = useDispatch();
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const sortedEmployees = employees.slice().sort((a, b) => a.id - b.id);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const employeeId = searchParams.get('employeeId');
+
+    if(employeeId != null){
+         let toUpdateEmployee = Number.parseInt(employeeId);
+        sortedEmployees = employees.filter((e)=> e.id == toUpdateEmployee);
+    }
+    else {
+        sortedEmployees = employees.slice().sort((a, b) => a.id - b.id);
+    }
 
     useEffect(() => {
         console.log("useEffect")
         dispatch(getEmp());
     }, []);
-
-    const handleSubmit = (e) => {
-        console.log("Bye Bye..")
-        dispatch(
-            employeeUpdation({ updatedEmployee: updateEmployee, })
-        );
-    };
 
     const handleUpdate = (emp) => {
         setUpdateEmployee(emp);
@@ -30,11 +34,10 @@ const EmployeeData = () => {
 
     const handleUpdateSave = () => {
         dispatch(employeeUpdation(updateEmployee))
-        navigate('/employee');
-      };
+        // navigate('/employee');
+    };
 
     if (loading) {
-        // Render a loading indicator or error message
         return (
             <div id="displayDiv">
                 <h1>Loading...</h1>
@@ -52,7 +55,7 @@ const EmployeeData = () => {
     return (
         <>
             <div id="displayDiv">
-                <h1>Employee Data From Database</h1>
+                <h1>Employee Data</h1>
 
                 <table className="table-primary" id="empDataTable">
                     <tr>
@@ -66,7 +69,7 @@ const EmployeeData = () => {
                             <td>{ele.id}</td>
                             <td>{ele.name}</td>
                             <td>{ele.dateOfJoining}</td>
-                            <td>
+                            <td id="center">
                                 <button type="button" onClick={() => handleUpdate(ele)} className="btn btn-success" data-bs-toggle="modal" data-bs-target={`#exampleModal-${ele.id}`} >
                                     Update
                                 </button>
@@ -79,7 +82,7 @@ const EmployeeData = () => {
                                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
                                             <div className="modal-body">
-                                                <form id="addEmpForm" onSubmit={handleSubmit}>
+                                                <form id="addEmpForm">
                                                     <div className="mb-3">
                                                         <input
                                                             type="number"

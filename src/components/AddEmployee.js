@@ -27,8 +27,8 @@ const AddEmployee = () => {
   };
 
   return (
-    <div id="addEmp">
-      <h2>Fill the form to add a new Employee</h2>
+    <div id="addCss">
+      <h3 id="heading">Fill the form to add a new Employee</h3>
       <form id="addEmpForm" onSubmit={handleSubmit}>
         <div className="mb-3">
           <input
@@ -37,6 +37,7 @@ const AddEmployee = () => {
             placeholder="Enter Name"
             value={employee.name} // Bind input value to state
             onChange={(e) => setEmployee({ ...employee, name: e.target.value })} // Update state on input change
+            required
           />
         </div>
         <div className="mb-3">
@@ -52,6 +53,7 @@ const AddEmployee = () => {
               })
             }
             pattern="\d{4}-\d{2}-\d{2}"
+            required
           />
         </div>
         <div className="mb-3">
@@ -66,6 +68,7 @@ const AddEmployee = () => {
                 companyId: e.target.value,
               })
             }
+            required
           />
         </div>
         <div className="mb-3">
