@@ -16,8 +16,8 @@ const EmployeeData = () => {
     const employeeId = searchParams.get('employeeId');
 
     if(employeeId != null){
-         let toUpdateEmployee = Number.parseInt(employeeId);
-        sortedEmployees = employees.filter((e)=> e.id == toUpdateEmployee);
+        let toUpdateEmployee = Number.parseInt(employeeId);
+        sortedEmployees = employees.filter((e)=> e.id === toUpdateEmployee);
     }
     else {
         sortedEmployees = employees.slice().sort((a, b) => a.id - b.id);
@@ -59,9 +59,9 @@ const EmployeeData = () => {
 
                 <table className="table-primary" id="empDataTable">
                     <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">name</th>
-                        <th scope="col">date of joining</th>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Date of Joining</th>
                         <th scope="col">Operations</th>
                     </tr>
                     {sortedEmployees.map((ele) => (
@@ -74,7 +74,7 @@ const EmployeeData = () => {
                                     Update
                                 </button>
 
-                                <div className="modal fade" id={`exampleModal-${ele.id}`} tabindex="-1" aria-labelledby={`exampleModalLabel-${ele.id}`} aria-hidden="true">
+                                <div className="modal fade" id={`exampleModal-${ele.id}`} tabIndex="-1" aria-labelledby={`exampleModalLabel-${ele.id}`} aria-hidden="true">
                                     <div className="modal-dialog">
                                         <div className="modal-content">
                                             <div className="modal-header">
@@ -115,7 +115,7 @@ const EmployeeData = () => {
                                                 </form>
                                             </div>
                                             <div className="modal-footer">
-                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                {/* <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button> */}
                                                 <button type="button" onClick={handleUpdateSave} className="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
                                             </div>
                                         </div>

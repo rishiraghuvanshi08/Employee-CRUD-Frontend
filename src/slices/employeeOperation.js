@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios"
-import { act } from "react-dom/test-utils";
 
 const initialState = {
     employees: [],
@@ -28,7 +27,9 @@ export const addNewEmployee = ({ companyId, employeeData }) => {
                 `http://localhost:8080/company/addEmployee/${companyId}`,
                 employeeData
             );
-            dispatch(addEmployeeFulfiled(response.data))
+            if(response.data != null){
+                dispatch(addEmployeeFulfiled(response.data))
+            }
         } catch (error) {
             dispatch(employeeRejected())
         }
@@ -50,7 +51,6 @@ export const employeeDeletion = (employeeId) => {
 export const employeeUpdation = (updatedEmployee) => {
     return async (dispatch) => {
         try {
-            console.log(updatedEmployee)
             dispatch(employeeLoading())
             const response = await axios.put(`http://localhost:8080/company/updateEmployee`, updatedEmployee);
             dispatch(updateEmployeeFulfiled(response.data));
