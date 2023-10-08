@@ -4,7 +4,7 @@ import { deleteCompany, getCompanies, updateCompanyDetails } from "../slices/com
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import { NavLink } from "react-router-dom";
-import { employeeData } from "../slices/displaySlice";
+import { addEmpPage, employeeData } from "../slices/displaySlice";
 
 const CompanyData = () => {
     const { companies, loading, error } = useSelector((state) => state.companyData)
@@ -38,7 +38,7 @@ const CompanyData = () => {
         setSelectedCompany(company);
         setShowUpdateModal(true);
 
-        setUpdateCompany({name: company.name, employeeList: company.employeeList});
+        setUpdateCompany({ name: company.name, employeeList: company.employeeList });
     }
 
     // Function to close the update modal
@@ -140,9 +140,12 @@ const CompanyData = () => {
                         </tbody>
                     </table>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
+                        <NavLink className="btn btn-primary" to={`/employee?comapnyId=${selectedCompany?.id}`} onClick={() => dispatch(addEmpPage("addEmployee"))} style={{width: "200px"}} >
+                            Add New Employee
+                        </NavLink>
+                        {/* <Button variant="secondary" onClick={handleClose}>
                             Close
-                        </Button>
+                        </Button> */}
                     </Modal.Footer>
                 </Modal.Dialog>
             </Modal>
@@ -158,7 +161,7 @@ const CompanyData = () => {
                                 type="text"
                                 className="form-control"
                                 placeholder="Enter Name"
-                                defaultValue={selectedCompany?.name}                                
+                                defaultValue={selectedCompany?.name}
                                 onChange={(e) => setUpdateCompany({ ...updateCompany, name: e.target.value })} // Update state on input change
                                 required
                             />

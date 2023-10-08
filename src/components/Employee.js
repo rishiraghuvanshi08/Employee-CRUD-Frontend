@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 const Employee = () => {
     return (
         <>
-            <div classNameName="text-center">
+            <div className="text-center">
                 <nav className="navbar navbar-expand-lg bg-body-tertiary text-center">
                     <div className="container-fluid text-center">
                         <div className="collapse navbar-collapse text-center" id="navbarNavAltMarkup">

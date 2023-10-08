@@ -15,16 +15,15 @@ const EmployeeData = () => {
     const searchParams = new URLSearchParams(location.search);
     const employeeId = searchParams.get('employeeId');
 
-    if(employeeId != null){
+    if (employeeId != null) {
         let toUpdateEmployee = Number.parseInt(employeeId);
-        sortedEmployees = employees.filter((e)=> e.id === toUpdateEmployee);
+        sortedEmployees = employees.filter((e) => e.id === toUpdateEmployee);
     }
     else {
         sortedEmployees = employees.slice().sort((a, b) => a.id - b.id);
     }
 
     useEffect(() => {
-        console.log("useEffect")
         dispatch(getEmp());
     }, []);
 
@@ -58,12 +57,15 @@ const EmployeeData = () => {
                 <h1>Employee Data</h1>
 
                 <table className="table-primary" id="empDataTable">
-                    <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">Date of Joining</th>
-                        <th scope="col">Operations</th>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Date of Joining</th>
+                            <th scope="col">Operations</th>
+                        </tr>
+                    </thead>
+                    <tbody>
                     {sortedEmployees.map((ele) => (
                         <tr key={ele.id}>
                             <td>{ele.id}</td>
@@ -125,6 +127,7 @@ const EmployeeData = () => {
                             </td>
                         </tr>
                     ))}
+                    </tbody>
                 </table>
             </div>
         </>

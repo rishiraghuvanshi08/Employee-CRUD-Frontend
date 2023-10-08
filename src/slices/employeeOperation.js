@@ -7,6 +7,15 @@ const initialState = {
     error: null,
 }
 
+const showAlert = (message, type) => {
+    alert(message); // Display the initial alert
+  
+    // Use setTimeout to close the alert after 3 seconds
+    setTimeout(() => {
+        
+    }, 3000);
+  };
+
 export const getEmp = () => {
     return async (dispatch) => {
         try {
@@ -27,9 +36,13 @@ export const addNewEmployee = ({ companyId, employeeData }) => {
                 `http://localhost:8080/company/addEmployee/${companyId}`,
                 employeeData
             );
-            if(response.data != null){
+            if(response.data.id != "0"){
+                showAlert("A New Employee Added Successfully..", "success");
                 dispatch(addEmployeeFulfiled(response.data))
+            } else {
+                showAlert("Company does not exist..", "error");
             }
+               
         } catch (error) {
             dispatch(employeeRejected())
         }
@@ -40,7 +53,7 @@ export const employeeDeletion = (employeeId) => {
     return async (dispatch) => {
         try {
             dispatch(employeeLoading())
-            const response = await axios.delete(`http://localhost:8080/company/deleteEmp/${employeeId}`);
+            await axios.delete(`http://localhost:8080/company/deleteEmp/${employeeId}`);
             dispatch(deleteEmployeeFulfiled(employeeId));
         } catch (error) {
             dispatch(employeeRejected())
@@ -76,13 +89,10 @@ export const employeeOperation = createSlice({
             state.error = true;
         },
         addEmployeeFulfiled: (state, action) => {
-            state.loading = false;
-            let empList = [...state.employees];
-            empList.push(action.payload);
-            state.employees = empList;
-
-            // Alternate Way
-            // state.employees.push(action.payload);
+            if(action.payload == null){
+                return state.employees;
+            }
+            state.employees.push(action.payload);
         },
         deleteEmployeeFulfiled: (state, action) => {
             state.loading = false;
